@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        .kare {
+            height: 50px;
+            width: 50px;
+            background-color: mediumorchid;
+            margin-right: 10px;
+            margin-top: 10px;
+            float: left;
+            position: relative;
+            left: 13px;
+        }
+
+        .ornekkare {
+            height: 50px;
+            width: 50px;
+            background-color: mediumorchid;
+            margin-right: 10px;
+            margin-top: 10px;
+            float: left;
+            position: relative;
+            left: 13px;
+        }
+
+        table {
+            height:750px;
+            width: 750px;
+            border: double;
+            margin: 10px;
+            padding: 20px;
+        }
+
+    </style>
+
+    <script>
+      var seconds = 0;
+setInterval(function() {
+zaman.innerHTML ="Süre: "+ seconds++;
+}, 1000);
+    </script>
+
+</head>
+<body>
+    <p id="sonuc"></p>
+    <p id="zaman"></p>
+   
+    <script type="text/javascript">
+        var satir = 10;
+        var sutun = 10;
+        var temp = '<table>';
+        temp += "<tr>";
+        temp += "<td>" + '<input type="button" value="Renk Seç" style="width:70px;height:50px;position:relative;top:5px;" onclick="renksec()" />' + "</td>";
+        temp += "<td>" + '<div class="ornekkare" id="secilirenk"></div>' + "</td>";
+        temp += "</tr>";       
+        for (var i = 0; i < satir; i++) {
+            temp += "<tr>";
+            temp += "<td>" +""+ "</td>"
+            for (var j = 0; j < sutun; j++) {
+                temp += "<td>" + '<div class="kare" onclick="KareSil(this)"></div>' + "</td>";
+            }
+            temp += "</tr>";
+        }
+        temp += "</table>";
+        document.write(temp);
+    </script>
+
+    <script>
+
+        var div = document.getElementById("secilirenk");
+        function renksec() {
+            var renkler = new Array("grey", "black", "red", "purple", "pink", "blue", "white", "yellow", "aqua", "green");
+            secilen = [Math.round(Math.random() * 9)];
+            div.style.backgroundColor = renkler[secilen];
+
+
+        };
+
+
+        var divler = document.getElementsByClassName("kare");
+        setInterval(
+            function () {
+                for (var i = 0; i < divler.length; i++) {
+                    var renkler = new Array("grey", "black", "red", "purple", "pink", "blue", "white", "yellow", "aqua", "green");
+                    secilen = [Math.round(Math.random() * 9)];
+                    divler[i].style.backgroundColor = renkler[secilen];
+
+                }
+
+            }, 3000
+        );
+
+        var i = 0;
+        function KareSil(divim) {
+            if (div.style.backgroundColor != divim.style.backgroundColor) {
+                alert("uyumsuz renk seçtiniz!!");
+            }
+            else {
+                divim.style.backgroundColor = "antiquewhite";
+                divim.className = "yeni";
+                i++;
+                if (i == 100) {
+                    var x = document.getElementById("zaman");
+                    x.style.display = "none";
+                    document.getElementById("sonuc").innerHTML = "Tebrikler oyun bitti :)   Süre: " + seconds+" sn";
+                    
+                }
+            }
+        };
+
+
+    </script>
+
+
+
+</body>
+</html>
